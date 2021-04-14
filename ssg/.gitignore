@@ -1,0 +1,11 @@
+
+node_modules
+
+source/_fetchdir/*
+source/_styles/*
+
+source/global.et.yaml
+source/global.en.yaml
+source/global.ru.yaml
+
+entu-ssg.yaml
