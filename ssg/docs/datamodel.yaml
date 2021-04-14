@@ -1,0 +1,245 @@
+# StrapiMedia
+Large: &Large
+    # ext: (text)
+    url:  (text)
+    # hash:  (text)
+    # mime:  (text)
+    name:  (text)
+    path:  (text)
+    # size:  (number)
+    # width:  (number)
+    # heigth:  (number)
+
+Medium : &Medium
+    # ext: (text)
+    url:  (text)
+    # hash:  (text)
+    # mime:  (text)
+    name:  (text)
+    path:  (text)
+    # size:  (number)
+    # width:  (number)
+    # heigth:  (number)
+
+Small: &Small
+    # ext: (text)
+    url:  (text)
+    # hash:  (text)
+    # mime:  (text)
+    name:  (text)
+    path:  (text)
+    # size:  (number)
+    # width:  (number)
+    # heigth:  (number)
+
+Thumbnail: &Thumbnail
+    # ext:  (text)
+    url:  (text)
+    # hash:  (text)
+    # mime:  (text)
+    name:  (text)
+    path:  (text)
+    # size:  (number)
+    # width:  (number)
+    # heigth:  (number)
+
+StrapiMedia: &StrapiMedia
+    id: (number)
+    name: (text)
+    alternativeText: (text)
+    caption: (text)
+    width: (number)
+    height: (number)
+    formats:
+        large: *Large #(Component)
+        medium: *Medium #(Component)
+        small: *Small #(Component)
+        thumbnail: *Thumbnail #(Component)
+    hash: (text)
+    ext: (text)
+    # mime: (text)
+    # size: (number)
+    url: (text)
+    previewUrl: (text)
+    # provider: (text)
+    # provider_metadata: (text)
+
+Translated: &Translated
+    et: text
+    en: text
+    ru: text
+
+User: &User
+    email: email
+    person: Person 
+
+Group: &Group
+    name: *Translated //kas kuvatakse kuskil v lihtsalt teksti v'li
+    description: *Translated
+    user:
+        - *User
+
+Role: &Role
+    name: *Translated
+    description: *Translated 
+    active: boolean
+    group: 
+        - *Group
+
+Right: &Right
+    keyname: *Role
+    name: *Translated
+    description: *Translated
+    active: boolean
+
+Country: &Country
+    name: *Translated
+
+Person: &Person
+    user: *User
+    forename: text
+    surmane: text
+    email: email
+    group:
+        - *Group
+    address: text
+    addr_country: *Country
+
+Exhibition: &Exhibition
+    article: 
+        - Article
+    www: text
+
+ExhibitionRole: &ExhibitionRole
+    name: *Translated
+    active: boolean
+
+ExhibitionPerson: &ExhibitionPerson
+    exhibition: *Exhibition
+    person: *Person
+    exhibition_role: 
+        - *ExhibitionRole
+
+Competition: &Competition
+    article: 
+        - Article
+    type: text //enumeration?
+    question_deadline: datetime
+    start_date: datetime
+    apply_date: datetime
+    register_date: datetime
+    award_date: datetime
+    location: *Country //saab ka mitu olla?
+    EAL_organized: boolean 
+
+CompetitionRole: &CompetitionRole
+    name: Translated
+    active: boolean
+
+CompetitionPerson: CompetitionPerson
+    competition:  *Competition
+    person: *Person
+    competition_role: 
+        - *CompetitionRole 
+
+Attachments: &Attachments
+    name: Translated
+    source_url: text
+    source_name: text
+    files: 
+        - *StrapiMedia
+
+Article: &Article 
+    title: *Translated
+    lead: *Translated
+    lead_image: *StrapiMedia //kas igas keeles voib erinev olla
+    published: boolean
+    publish_start: datetime
+    publish_end: datetime
+    body: *Translated
+    gallery: 
+        - *StrapiMedia
+    exhibition: 
+        - *Exhibition
+    attachments: 
+        -Attachments
+    author: *Person
+    competition: 
+        - *Competition
+
+Menu: &Menu
+    name: Translated
+    prority: number
+    article: 
+        - *Article
+ 
+Customer: &Customer
+    name: text
+    address: text
+    addr_country: *Country
+    www: text
+ 
+Project: &Project
+    title: *Translated
+    customer: *Customer
+    type: text // enumeration?
+    files:
+        - *StrapiMedia
+    team: 
+        - ProjectPerson
+    year: number
+    production_year: number
+    address: text
+    addr_country: *Country
+    counrty: *Country
+    geo_location: text
+
+ProjectRole: &ProjectRole
+    name: *Translated
+    active: boolean
+
+ProjectPerson: &ProjectPerson
+    person: *Person
+    project: *Project
+    project_role: 
+        - *ProjectRole 
+
+Partner: &Partner
+    name: text
+    address: text
+    addr_country: *Country
+    phone: text
+    fax: text
+    www: text
+    email: email
+    logo: *StrapiMedia
+    contact_person: *Person //vb peaks olema company person... ringtee
+
+Office: &Office
+    name: text
+    phone: text
+    fax: text
+    www: text
+    email: email
+    address: text
+    addr_country: *Country
+    logo: *StrapiMedia
+    prority: number
+
+Company: &Company
+    name: text
+    description: *Translated
+    partner: *Partner //kui tegemist on ettev]ttega, mis on EAL jaoks parner, vb peaks olema komponent...
+    office: *Office // liikme tookoha andmed
+
+CompanyRole: &CompanyRole
+    name: *Translated
+    active: boolean
+
+CompanyPerson: &CompanyPerson
+    company: *Company
+    person: *Person
+    company_role: 
+        - *CompanyRole
+    start_date: datetime
+    end_date: datetime
