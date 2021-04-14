@@ -1,3 +1,10 @@
-*
+/*
 !strapi-development
-!ssg
+strapi-development/node-modules
+strapi-development/config
+strapi-development/extensions/users-permissions/config
+strapi-development/.env*
+strapi-development/public/uploads
+
+
+!README.md
