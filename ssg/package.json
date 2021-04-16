@@ -2,8 +2,8 @@
     "name":"EAL",
     "version":"1.0.0",
     "scripts":{
-        "build":"node ./node_modules/entu-ssg/src/build.js",
-        "serve":"node ./node_modules/entu-ssg/src/serve.js"
+        "build":"node ./node_modules/entu-ssg/src/build.js ./entu-ssg.yaml full",
+        "serve":"node ./node_modules/entu-ssg/src/serve.js ./entu-ssg.yaml"
     },
     "dependencies":{
         "entu-ssg": "^5.2.10"
