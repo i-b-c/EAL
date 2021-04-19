@@ -9,3 +9,9 @@ source/global.en.yaml
 source/global.ru.yaml
 
 entu-ssg.yaml
+
+# Keys and secrets
+docs/keys
+
+#Data transfer
+helpers/data-transfer/*

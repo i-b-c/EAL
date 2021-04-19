@@ -1,48 +1,3 @@
-# StrapiMedia
-Large: &Large
-    # ext: (text)
-    url:  (text)
-    # hash:  (text)
-    # mime:  (text)
-    name:  (text)
-    path:  (text)
-    # size:  (number)
-    # width:  (number)
-    # heigth:  (number)
-
-Medium : &Medium
-    # ext: (text)
-    url:  (text)
-    # hash:  (text)
-    # mime:  (text)
-    name:  (text)
-    path:  (text)
-    # size:  (number)
-    # width:  (number)
-    # heigth:  (number)
-
-Small: &Small
-    # ext: (text)
-    url:  (text)
-    # hash:  (text)
-    # mime:  (text)
-    name:  (text)
-    path:  (text)
-    # size:  (number)
-    # width:  (number)
-    # heigth:  (number)
-
-Thumbnail: &Thumbnail
-    # ext:  (text)
-    url:  (text)
-    # hash:  (text)
-    # mime:  (text)
-    name:  (text)
-    path:  (text)
-    # size:  (number)
-    # width:  (number)
-    # heigth:  (number)
-
 StrapiMedia: &StrapiMedia
     id: (number)
     name: (text)
@@ -51,10 +6,46 @@ StrapiMedia: &StrapiMedia
     width: (number)
     height: (number)
     formats:
-        large: *Large #(Component)
-        medium: *Medium #(Component)
-        small: *Small #(Component)
-        thumbnail: *Thumbnail #(Component)
+        large: 
+            # ext: (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+        medium: 
+            # ext: (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+        small: 
+            # ext: (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+        thumbnail: 
+            # ext:  (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
     hash: (text)
     ext: (text)
     # mime: (text)
@@ -67,14 +58,13 @@ StrapiMedia: &StrapiMedia
 Translated: &Translated
     et: text
     en: text
-    ru: text
 
 User: &User
     email: email
     person: Person 
 
 Group: &Group
-    name: *Translated //kas kuvatakse kuskil v lihtsalt teksti v'li
+    name: *Translated # kas kuvatakse kuskil v lihtsalt teksti v'li
     description: *Translated
     user:
         - *User
@@ -99,7 +89,10 @@ Person: &Person
     user: *User
     forename: text
     surmane: text
+    fullname: text
     email: email
+    phone: text
+    description: text
     group:
         - *Group
     address: text
@@ -108,6 +101,9 @@ Person: &Person
 Exhibition: &Exhibition
     article: 
         - Article
+    start_date: datetime
+    end_date: datetime
+    description: *Translated
     www: text
 
 ExhibitionRole: &ExhibitionRole
@@ -123,51 +119,57 @@ ExhibitionPerson: &ExhibitionPerson
 Competition: &Competition
     article: 
         - Article
-    type: text //enumeration?
+    type: text #enumeration?
     question_deadline: datetime
     start_date: datetime
     apply_date: datetime
     register_date: datetime
     award_date: datetime
-    location: *Country //saab ka mitu olla?
+    location: *Country #saab ka mitu olla?
     EAL_organized: boolean 
 
 CompetitionRole: &CompetitionRole
     name: Translated
     active: boolean
 
-CompetitionPerson: CompetitionPerson
-    competition:  *Competition
+CompetitionPerson: &CompetitionPerson
+    competition: *Competition
     person: *Person
     competition_role: 
         - *CompetitionRole 
 
 Attachments: &Attachments
-    name: Translated
+    name: text
     source_url: text
     source_name: text
     files: 
         - *StrapiMedia
 
-Article: &Article 
-    title: *Translated
+Article: &Article
+    _path: /articles
+    title_et: text
+    title_en: text
+    slug_et: UID
+    slug_en: UID
     lead: *Translated
-    lead_image: *StrapiMedia //kas igas keeles voib erinev olla
+    lead_image: *StrapiMedia # kas igas keeles voib erinev olla
     published: boolean
     publish_start: datetime
     publish_end: datetime
     body: *Translated
     gallery: 
-        - *StrapiMedia
+        -   order: number
+            file: *StrapiMedia
     exhibition: 
         - *Exhibition
     attachments: 
-        -Attachments
+        - *Attachments
     author: *Person
     competition: 
         - *Competition
+    remote_id: number
 
-Menu: &Menu
+Menu: &Menu # https://www.rapha.cc/
     name: Translated
     prority: number
     article: 
@@ -182,7 +184,7 @@ Customer: &Customer
 Project: &Project
     title: *Translated
     customer: *Customer
-    type: text // enumeration?
+    type: text # enumeration?
     files:
         - *StrapiMedia
     team: 
@@ -213,7 +215,7 @@ Partner: &Partner
     www: text
     email: email
     logo: *StrapiMedia
-    contact_person: *Person //vb peaks olema company person... ringtee
+    contact_person: *Person # vb peaks olema company person... ringtee
 
 Office: &Office
     name: text
@@ -229,8 +231,8 @@ Office: &Office
 Company: &Company
     name: text
     description: *Translated
-    partner: *Partner //kui tegemist on ettev]ttega, mis on EAL jaoks parner, vb peaks olema komponent...
-    office: *Office // liikme tookoha andmed
+    partner: *Partner # kui tegemist on ettev]ttega, mis on EAL jaoks parner, vb peaks olema komponent...
+    office: *Office # liikme tookoha andmed
 
 CompanyRole: &CompanyRole
     name: *Translated
