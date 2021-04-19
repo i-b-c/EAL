@@ -1,14 +1,17 @@
-
+# ssg
 node_modules
+.DS_Store
 
+# sanity
+*.pickle
+credentials.json
+token.json
+.env
+report.*
+
+# dynamic stuff
+build
 source/_fetchdir/*
-source/_styles/*
-
-source/global.et.yaml
-source/global.en.yaml
-source/global.ru.yaml
-
-entu-ssg.yaml
 
 # Keys and secrets
 docs/keys
