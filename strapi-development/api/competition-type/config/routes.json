@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/competition-types",
+      "handler": "competition-type.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/competition-types/count",
+      "handler": "competition-type.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/competition-types/:id",
+      "handler": "competition-type.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/competition-types",
+      "handler": "competition-type.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/competition-types/:id",
+      "handler": "competition-type.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/competition-types/:id",
+      "handler": "competition-type.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

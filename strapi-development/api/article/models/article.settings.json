@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "name": "Article",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title_et": {
+      "type": "string"
+    },
+    "title_en": {
+      "type": "string"
+    },
+    "title_ru": {
+      "type": "string"
+    },
+    "slug_et": {
+      "type": "uid",
+      "targetField": "title_et"
+    },
+    "slug_en": {
+      "type": "uid",
+      "targetField": "title_en"
+    },
+    "slug_ru": {
+      "type": "uid",
+      "targetField": "title_ru"
+    },
+    "themes": {
+      "collection": "theme"
+    },
+    "lead": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "body": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "lead_image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "video_url": {
+      "type": "string"
+    },
+    "galleries": {
+      "collection": "gallery"
+    },
+    "publish_start": {
+      "type": "datetime"
+    },
+    "publish_end": {
+      "type": "datetime"
+    },
+    "published_et": {
+      "type": "boolean"
+    },
+    "published_en": {
+      "type": "boolean"
+    },
+    "published_ru": {
+      "type": "boolean"
+    },
+    "competitions": {
+      "via": "articles",
+      "collection": "competition"
+    },
+    "remote_id": {
+      "type": "uid"
+    }
+  }
+}

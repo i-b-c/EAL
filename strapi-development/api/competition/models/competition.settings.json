@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "competitions",
+  "info": {
+    "name": "Competition",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "types": {
+      "collection": "competition-type"
+    },
+    "question_deadline": {
+      "type": "datetime"
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "apply_date": {
+      "type": "datetime"
+    },
+    "register_date": {
+      "type": "datetime"
+    },
+    "award_date": {
+      "type": "datetime"
+    },
+    "themes": {
+      "collection": "theme"
+    },
+    "articles": {
+      "collection": "article",
+      "via": "competitions",
+      "dominant": true
+    },
+    "location": {
+      "model": "country"
+    },
+    "EAL_organized": {
+      "type": "boolean"
+    },
+    "remote_id": {
+      "type": "uid"
+    },
+    "name_et": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "name_ru": {
+      "type": "string"
+    },
+    "slug_et": {
+      "type": "uid",
+      "targetField": "name_et"
+    },
+    "slug_en": {
+      "type": "uid",
+      "targetField": "name_en"
+    },
+    "slug_ru": {
+      "type": "uid",
+      "targetField": "name_ru"
+    }
+  }
+}
