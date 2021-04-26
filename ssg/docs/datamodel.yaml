@@ -58,6 +58,17 @@ StrapiMedia: &StrapiMedia
 Translated: &Translated
     et: text
     en: text
+    ru: text
+
+Gallery: &Gallery
+    name: *Translated
+    order: number
+    front_image: *StrapiMedia # vb pole vaja, Jaan küsib
+    images: 
+        name: text
+        order: number
+        files:
+            - *StrapiMedia
 
 User: &User
     email: email
@@ -85,11 +96,28 @@ Right: &Right
 Country: &Country
     name: *Translated
 
+
+Theme: &Theme #teemaleht koosneb k6ikidest obj millel teema kyljes
+    on_first_page: boolean
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    title: *Translated
+    lead: *Translated
+    description: *Translated
+    image: *StrapiMedia
+    order: number
+
 Person: &Person
     user: *User
     forename: text
     surmane: text
     fullname: text
+    tag: 
+        - *Theme
     email: email
     phone: text
     description: text
@@ -98,7 +126,7 @@ Person: &Person
     address: text
     addr_country: *Country
 
-Exhibition: &Exhibition
+Event: &Event #tegelikult laiem ÜRITUS, info läbi node mooduli
     article: 
         - Article
     start_date: datetime
@@ -106,26 +134,42 @@ Exhibition: &Exhibition
     description: *Translated
     www: text
 
-ExhibitionRole: &ExhibitionRole
+EventRole: &EventRole
     name: *Translated
     active: boolean
 
-ExhibitionPerson: &ExhibitionPerson
-    exhibition: *Exhibition
+EventPerson: &EventPerson
+    event: *Event
     person: *Person
-    exhibition_role: 
-        - *ExhibitionRole
+    event_role: 
+        - *EventRole
+
+CompetitionType: &CompetitionType
+    _path: /competition-types
+    name: text
+    description: text
 
 Competition: &Competition
-    article: 
+    _path: /competitions
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    description: *Translated
+    articles: 
         - Article
-    type: text #enumeration?
+    types: 
+        - *CompetitionType
     question_deadline: datetime
     start_date: datetime
     apply_date: datetime
     register_date: datetime
     award_date: datetime
     location: *Country #saab ka mitu olla?
+    themes: 
+        - *Theme
     EAL_organized: boolean 
 
 CompetitionRole: &CompetitionRole
@@ -140,31 +184,49 @@ CompetitionPerson: &CompetitionPerson
 
 Attachments: &Attachments
     name: text
-    source_url: text
-    source_name: text
+    source_url: text 
     files: 
         - *StrapiMedia
 
+Source: &Source
+    name: text
+    source_url: text
+    source_name: text
+
+ArticleType: &ArticleType // uudis, sisu, 
+    name: text
+    description: text
+
 Article: &Article
     _path: /articles
+    type: 
+        - *ArticleType
     title_et: text
     title_en: text
+    title_ru: text
     slug_et: UID
     slug_en: UID
+    slug_ru: UID
+    themes: 
+        - *Theme
     lead: *Translated
+    body: *Translated
     lead_image: *StrapiMedia # kas igas keeles voib erinev olla
-    published: boolean
+    video_url: text
+    galleries: 
+        - *Gallery
     publish_start: datetime
     publish_end: datetime
-    body: *Translated
-    gallery: 
-        -   order: number
-            file: *StrapiMedia
-    exhibition: 
-        - *Exhibition
+    published_et: boolean    
+    published_en: boolean
+    published_ru: boolean
+    event: 
+        - *Event
     attachments: 
         - *Attachments
-    author: *Person
+    source: *Source
+    add_new_author: text
+    select_author: *Person
     competition: 
         - *Competition
     remote_id: number
@@ -183,6 +245,7 @@ Customer: &Customer
  
 Project: &Project
     title: *Translated
+    description: *Translated
     customer: *Customer
     type: text # enumeration?
     files:
@@ -191,7 +254,7 @@ Project: &Project
         - ProjectPerson
     year: number
     production_year: number
-    address: text
+    address: text 
     addr_country: *Country
     counrty: *Country
     geo_location: text
@@ -245,3 +308,15 @@ CompanyPerson: &CompanyPerson
         - *CompanyRole
     start_date: datetime
     end_date: datetime
+
+Kutsetase: &Kutsetase
+
+Shared: &Shared #metadata
+    metaTitle: text
+    metaDescription: text
+    sharedImage: #component
+        media: image
+        alt: text
+
+preventIndexing: 
+keywords:
