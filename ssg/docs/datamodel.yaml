@@ -61,41 +61,78 @@ Translated: &Translated
     ru: text
 
 Gallery: &Gallery
-    name: *Translated
+    name: text
     order: number
     front_image: *StrapiMedia # vb pole vaja, Jaan küsib
     images: 
         name: text
         order: number
-        files:
-            - *StrapiMedia
+        author: text
+        file: *StrapiMedia
 
 User: &User
     email: email
     person: Person 
 
-Group: &Group
-    name: *Translated # kas kuvatakse kuskil v lihtsalt teksti v'li
-    description: *Translated
-    user:
-        - *User
+Access: &Access
+    access: enumeration
 
-Role: &Role
+City: &City
+    name_et: text
+    name_en: text
+    name_ru: text
+
+Parish: &Parish
+    name_et: text
+    name_en: text
+    name_ru: text
+
+County: &County
+    name_et: text
+    name_en: text
+    name_ru: text
+
+Address: &Address #Strapis poolik, pole sees k6ik v4ljad
+    street: text 
+    city: text 
+    parish: text 
+    county: text 
+    postcode: text
+    country: *Country
+    map_link: text
+    text: text
+
+Group: &Group # grupp labi userite annab hetkel 6iguseid
+    name: *Translated
+    description: *Translated
+    access: *Access
+    # users_permissions_users:
+    #     - *User
+    roles_in_group:
+        -   select_role: *PersonRole
+            add_new_role: text
+            select_author: *Person # kuvame tähestiku järgi
+            add_new_author: text #fullname, lifesycle peab uue inimese tekitama kui juba olemas pole
+            name_private: text
+
+PersonRole: &PersonRole #Strapis ei saa Role olla
     name: *Translated
     description: *Translated 
     active: boolean
-    group: 
+    groups: # roll annab l4bi grupi 6iguseid!
         - *Group
 
-Right: &Right
-    keyname: *Role
+# Right: &Right
+    keyname: *PersonRole
     name: *Translated
     description: *Translated
     active: boolean
 
 Country: &Country
-    name: *Translated
-
+    name_et: text
+    name_en: text
+    name_ru: text
+    code: text
 
 Theme: &Theme #teemaleht koosneb k6ikidest obj millel teema kyljes
     on_first_page: boolean
@@ -105,51 +142,183 @@ Theme: &Theme #teemaleht koosneb k6ikidest obj millel teema kyljes
     slug_et: UID
     slug_en: UID
     slug_ru: UID
-    title: *Translated
     lead: *Translated
     description: *Translated
     image: *StrapiMedia
     order: number
 
-Person: &Person
-    user: *User
+OrganisationType: &OrganisationType #Büroo, õppeasutus, partner, 
+    name: text
+    description: text
+
+Logo: &Logo
+    logo_white: *StrapiMedia
+    logo_colour: *StrapiMedia
+    logo_black: *StrapiMedia
+
+Organisation: &Organisation 
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID name
+    slug_en: UID name
+    slug_ru: UID name
+    description: *Translated
+    type: *OrganisationType
+    address: *Address
+    email: text
+    phone: text
+    www: text
+    image: *StrapiMedia
+    logo: *Logo #component
+    access: *Access
+    order: number
+    themes: 
+        - *Theme
+    group: 
+        - *Group
+    role_in_orgnisation: 
+        -   select_role: *PersonRole
+            add_new_role: text
+            select_author: *Person # kuvame tähestiku järgi
+            add_new_author: text #fullname, lifesycle peab uue inimese tekitama kui juba olemas pole
+            name_private: text
+
+Person: &Person #sisestab liige ise, strapis poolik
+    _path: /people
+
+    #meie jaoks, admin näeb
+    remote_id: UID
+    users_permissions_user: *User
+    EAL_member: boolean #kas seda vaja voi loeme user kyljest
+    description: text
+    access: *Access
+    is_mailinglist_member: boolean
+    membership_no: number
+    membership_start_date: datetime
+    membership_end_date: datetime
+    membership_end_cause_id: datetime
+
+    #alati avalikud
     forename: text
     surmane: text
     fullname: text
+    slug: UID (fullname)
+    profile_picture: *StrapiMedia
+    education: #component add/select org
+        -   access: *Access
+            select_organisation: *Organisation
+            add_new_organisation: #Nii lisades peab olema keegi, kes käib lisatud infot regulaarselt rikastamas
+                name_et: text
+                name_en: text
+                address: *Address
+                # type: *OrganisationType # kirjutame ilmselt ise teades kust info tuleb
+                www: text
+            start_date: datetime
+            end_date: datetime
+            role_in_organisation: #*RoleIn et roll on magistrant vms # peaks olema ka eriala
+    notes: text
     tag: 
         - *Theme
-    email: email
-    phone: text
-    description: text
-    group:
-        - *Group
-    address: text
-    addr_country: *Country
+    # qualification_start_date: datetime # see ongi kutsetase?
+    # qualification_end_date: datetime
+    # qualification_id: number
+
+    #alati peidus, liikmetele näha
+
+    national_id: number ()
+    gender: enumeration
+    home_address: *Address
+    deathdate: date
+
+    #ise valivad kes näeb access
+    birthdate: #component SmallAccess
+        access: *Access
+        value: text
+    phone: 
+        access: *Access
+        value: text
+    mobile: 
+        access: *Access
+        value: text
+    email:
+        access: *Access
+        value: text
+    www: 
+        access: *Access
+        value: text
+    work_experience: 
+        -   access: *Access
+            select_organisation: *Organisation
+            add_new_organisation: #Nii lisades peab olema keegi, kes käib lisatud infot regulaarselt rikastamas
+                name_et: text
+                name_en: text
+                address: *Address
+                # type: *OrganisationType # kirjutame ilmselt ise teades kust info tuleb
+                www: text
+            start_date: datetime
+            end_date: datetime
+            role_in_organisation: #*RoleIn et roll on magistrant vms
+
+    added_articles: # vb pole hea lahendus, kuidas kustutada, mis juhtub siis kui 
+        -   add_to_my_page: boolean
+            role: *PersonRole
+            article: *Article # articli juures komponent authors, kui inimene lisatkse m]ne artikli juures autoriks peaks see kas siia tekkima, Kuidas kustutada????
+    added_groups:
+        -   add_to_my_page: boolean
+            role: *PersonRole
+            group: *Group
+    added_events:
+        -   add_to_my_page: boolean
+            role: *PersonRole
+            event: *Group
+    added_competitions:
+        -   add_to_my_page: boolean
+            role: *PersonRole
+            competition: *Group
+    added_projects:
+        -   add_to_my_page: boolean
+            role: *PersonRole
+            project: *Group
 
 Event: &Event #tegelikult laiem ÜRITUS, info läbi node mooduli
-    article: 
-        - Article
     start_date: datetime
     end_date: datetime
+    duration: number (minutites)
+    name_et: text
+    name_en: text
+    name_ru: text
+    lead: *Translated
     description: *Translated
     www: text
-
-EventRole: &EventRole
-    name: *Translated
-    active: boolean
-
-EventPerson: &EventPerson
-    event: *Event
-    person: *Person
-    event_role: 
-        - *EventRole
+    image: *StrapiMedia
+    video: text
+    galleries:
+        - *Gallery
+    themes:
+        - *Theme
+    location:
+        name: text
+        room: text
+        address: *Address
+    roles_in_event: 
+        -   select_role: *PersonRole
+            add_new_role: text
+            select_author: *Person # kuvame tähestiku järgi
+            add_new_author: text #fullname, lifesycle peab uue inimese tekitama kui juba olemas pole
+            name_private: text
+    competitions: 
+        -   *Competition
+    organistaion: *Organisation
+    article: 
+        - Article
 
 CompetitionType: &CompetitionType
     _path: /competition-types
     name: text
     description: text
 
-Competition: &Competition
+Competition: &Competition # sisestab admin
     _path: /competitions
     name_et: text
     name_en: text
@@ -158,40 +327,45 @@ Competition: &Competition
     slug_en: UID
     slug_ru: UID
     description: *Translated
-    articles: 
-        - Article
     types: 
         - *CompetitionType
+    themes: 
+        - *Theme
+    location: *Country
     question_deadline: datetime
     start_date: datetime
     apply_date: datetime
     register_date: datetime
-    award_date: datetime
-    location: *Country #saab ka mitu olla?
-    themes: 
-        - *Theme
-    EAL_organized: boolean 
-
-CompetitionRole: &CompetitionRole
-    name: Translated
-    active: boolean
-
-CompetitionPerson: &CompetitionPerson
-    competition: *Competition
-    person: *Person
-    competition_role: 
-        - *CompetitionRole 
+    award_date_and_location: text
+    award_fund: text
+    articles: 
+        - Article
+    organized_by:
+        -   *Organisation
+    related_projects: 
+        -   *Project #puudu Strapis
+            jury_comment: text
+            jury_protocol: *StrapiMedia
+            links_to_interviews: text
+    roles_in_competition: 
+        -   select_role: *PersonRole
+            add_new_role: text
+            select_author: *Person # kuvame tähestiku järgi
+            add_new_author: text #fullname, lifesycle peab uue inimese tekitama kui juba olemas pole
+            name_private: text
 
 Attachments: &Attachments
     name: text
-    source_url: text 
-    files: 
-        - *StrapiMedia
+    source_url: text
+    order: number
+    file: *StrapiMedia
+    file_remote_id: text
 
 Source: &Source
     name: text
     source_url: text
     source_name: text
+    source_author: text
 
 ArticleType: &ArticleType // uudis, sisu, 
     name: text
@@ -199,115 +373,106 @@ ArticleType: &ArticleType // uudis, sisu,
 
 Article: &Article
     _path: /articles
-    type: 
+    types: 
         - *ArticleType
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    lead: *Translated
+    body: *Translated
+    lead_image: *StrapiMedia # kas igas keeles voib erinev olla
+    video_url: text
+    publish_start: datetime
+    publish_end: datetime
+    published_et: boolean
+    published_en: boolean
+    published_ru: boolean
+    attachments: #component
+        -   *Attachments
+    sources: #component
+        -   *Source
+    authors: #component
+        -   select_role: *PersonRole
+            add_new_role: text
+            select_author: *Person # kuvame tähestiku järgi
+            add_new_author: text #fullname, lifesycle peab uue inimese tekitama kui juba olemas pole
+            name_private: text
+    event: 
+        -   *Event
+    themes: 
+        -   *Theme
+    competition: 
+        -   *Competition
+    # organistaion:
+    #     -   *Organisation
+    # group:
+    #     -   *Group
+    galleries: 
+        -   *Gallery
+    visibility: *Access
+    remote_id: number
+
+Menu: &Menu # https://www.rapha.cc/ tuleb veel veidi uurida, vast artikkel pole ainus obj mida lisada
+    name_et: Translated
+    name_en: Translated
+    name_ru: Translated
+    order: number
+    articles: 
+        - *Article
+    custon_url: text
+    second_layer_menu: 
+        -   name: text
+            order: number
+            articles: 
+                - *Article
+            custom_url: text
+            third_layer_menu: 
+                -   name: text
+                    order: number
+                    articles: 
+                        - *Article
+                    custom_url: text
+ 
+Customer: &Customer
+    name: text
+    address: *Address
+    www: text
+ 
+ProjectType: &ProjectType
+    name_et: *Translated
+    description: *Translated
+    remote_id: UID
+
+Project: &Project #Looming
     title_et: text
     title_en: text
     title_ru: text
     slug_et: UID
     slug_en: UID
     slug_ru: UID
-    themes: 
-        - *Theme
-    lead: *Translated
-    body: *Translated
-    lead_image: *StrapiMedia # kas igas keeles voib erinev olla
-    video_url: text
-    galleries: 
-        - *Gallery
-    publish_start: datetime
-    publish_end: datetime
-    published_et: boolean    
-    published_en: boolean
-    published_ru: boolean
-    event: 
-        - *Event
-    attachments: 
-        - *Attachments
-    source: *Source
-    add_new_author: text
-    select_author: *Person
-    competition: 
-        - *Competition
-    remote_id: number
-
-Menu: &Menu # https://www.rapha.cc/
-    name: Translated
-    prority: number
-    article: 
-        - *Article
- 
-Customer: &Customer
-    name: text
-    address: text
-    addr_country: *Country
-    www: text
- 
-Project: &Project
-    title: *Translated
     description: *Translated
-    customer: *Customer
-    type: text # enumeration?
-    files:
-        - *StrapiMedia
-    team: 
-        - ProjectPerson
-    year: number
+    type:   *ProjectType
+    year_of_design: number
     production_year: number
-    address: text 
-    addr_country: *Country
-    counrty: *Country
-    geo_location: text
-
-ProjectRole: &ProjectRole
-    name: *Translated
-    active: boolean
-
-ProjectPerson: &ProjectPerson
-    person: *Person
-    project: *Project
-    project_role: 
-        - *ProjectRole 
-
-Partner: &Partner
-    name: text
-    address: text
-    addr_country: *Country
-    phone: text
-    fax: text
+    customer:   *Customer
+    address:    *Address
+    roles_in_project: 
+        -   select_role: *PersonRole
+            add_new_role: text
+            select_author: *Person # kuvame tähestiku järgi
+            add_new_author: text #fullname, lifesycle peab uue inimese tekitama kui juba olemas pole
+            name_private: text
+    files:
+        -   *StrapiMedia
     www: text
-    email: email
-    logo: *StrapiMedia
-    contact_person: *Person # vb peaks olema company person... ringtee
-
-Office: &Office
-    name: text
-    phone: text
-    fax: text
-    www: text
-    email: email
-    address: text
-    addr_country: *Country
-    logo: *StrapiMedia
-    prority: number
-
-Company: &Company
-    name: text
-    description: *Translated
-    partner: *Partner # kui tegemist on ettev]ttega, mis on EAL jaoks parner, vb peaks olema komponent...
-    office: *Office # liikme tookoha andmed
-
-CompanyRole: &CompanyRole
-    name: *Translated
-    active: boolean
-
-CompanyPerson: &CompanyPerson
-    company: *Company
-    person: *Person
-    company_role: 
-        - *CompanyRole
-    start_date: datetime
-    end_date: datetime
+    access: *Access
+    themes:
+        -   *Theme
+    related_competitions: #kas ühe projektiga saab olla seotud mitu võistulust
+        -   *Competition # competition ei saa muuta, aga saan muuta projekti
 
 Kutsetase: &Kutsetase
 
