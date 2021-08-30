@@ -12,3 +12,10 @@ report.*
 # dynamic stuff
 build
 source/_fetchdir/*
+
+# Keys and secrets
+docs/keys
+
+#Data transfer
+helpers/data-transfer/*
+source/_allStrapidata/*

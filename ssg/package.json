@@ -1,12 +1,17 @@
 {
-    "name": "eal",
-    "version": "1.0.0",
-    "scripts": {
-        "build.sh": "bash ./build.sh",
-        "build": "node ./node_modules/entu-ssg/src/build.js ./entu-ssg.yaml full",
-        "serve": "node ./node_modules/entu-ssg/src/serve.js ./entu-ssg.yaml"
-    },
-    "dependencies": {
-        "entu-ssg": "^5.2.10"
-    }
+	"name": "EAL",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "node ./node_modules/entu-ssg/src/build.js ./entu-ssg.yaml full",
+		"serve": "node ./node_modules/entu-ssg/src/serve.js ./entu-ssg.yaml"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"entu-ssg": "^5.2.10",
+		"googleapis": "^71.0.0",
+		"js-yaml": "^4.1.0",
+		"turndown": "^7.0.0",
+		"yaml": "^1.10.2"
+	}
 }

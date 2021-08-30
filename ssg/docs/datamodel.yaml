@@ -1,0 +1,658 @@
+StrapiMedia: &StrapiMedia
+    id: (number)
+    name: (text)
+    alternativeText: (text)
+    caption: (text)
+    width: (number)
+    height: (number)
+    formats:
+        large: 
+            # ext: (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+        medium: 
+            # ext: (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+        small: 
+            # ext: (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+        thumbnail: 
+            # ext:  (text)
+            url:  (text)
+            # hash:  (text)
+            # mime:  (text)
+            name:  (text)
+            path:  (text)
+            # size:  (number)
+            # width:  (number)
+            # heigth:  (number)
+    hash: (text)
+    ext: (text)
+    # mime: (text)
+    # size: (number)
+    url: (text)
+    previewUrl: (text)
+    # provider: (text)
+    # provider_metadata: (text)
+
+Logo: &Logo
+    logo_white: *StrapiMedia
+    logo_colour: *StrapiMedia
+    logo_black: *StrapiMedia
+
+Translated: &Translated
+    et: text
+    en: text
+    ru: text
+
+AccessLevel: &AccessLevel
+    _path: /access-levels
+    namePrivate: text
+    name: *Translated
+    description: *Translated
+
+RoleIn: &RoleIn # PEaks 4ra muutma selected!!!!
+    select_person: Person
+    # add_new_person: text
+    select_role: PersonRole
+    # add_new_role: text
+    order: number 
+
+FileAttached: &FileAttached
+    name_public: text
+    file: *StrapiMedia
+    visibility: *AccessLevel
+
+GalleryImages: &GalleryImages
+    namePrivate: text
+    order: number
+    image: *StrapiMedia
+    file_remote_id: text #meie jaoks
+    caption: *Translated
+    file_attached: *FileAttached
+    photo_by: *RoleIn
+
+Gallery: &Gallery
+    # name: text
+    order: number
+    front_image: *StrapiMedia # vb pole vaja, Jaan küsib
+    image: 
+        - *GalleryImages
+    namePrivate: text
+    remote_id: UID
+    description: *Translated
+    title_et: text
+    title_en: text
+    title_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+
+User: &User
+    email: email
+    person: Person 
+
+City: &City
+    name_et: text
+    name_en: text
+    name_ru: text
+
+Parish: &Parish
+    name_et: text
+    name_en: text
+    name_ru: text
+
+County: &County
+    name_et: text
+    name_en: text
+    name_ru: text
+
+Country: &Country
+    code: text
+    name_et: text
+    name_en: text
+    name_ru: text
+
+Address: &Address #Strapis poolik, pole sees k6ik v4ljad
+    street: text 
+    city: *City 
+    parish: *Parish 
+    county: *Country 
+    postalcode: text
+    country: *Country
+    map_link: text
+    # add_city: text
+    # add_parish: text
+    # add-county: text
+    visibility: *AccessLevel
+
+PersonRole: &PersonRole #Strapis ei saa Role olla
+    _path: /person-roles
+    namePrivate: text
+    active: boolean #PEAKS OLEMA visibility
+    groups: # roll annab l4bi grupi 6iguseid!
+        - Group
+    people: 
+        - Person
+    roleName: *Translated
+    roleDescription: *Translated 
+    order: number
+
+RolesInGroup: &RolesInGroup
+    _path: /roles-in-groups
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi
+    group: Group
+    person_visibility: *AccessLevel
+    grop_visibility: *AccessLevel
+    start_date: date
+    end_date: date
+    name_private: text
+    order: number
+
+Group: &Group # grupp labi userite annab hetkel 6iguseid
+    _path: /groups
+    # users_permissions_users:
+    #     - *User
+    name: *Translated
+    description: *Translated
+    remote_id: UID
+    namePrivate: text
+    visibility: *AccessLevel
+    roles_in_groups:
+        -   *RolesInGroup
+
+# Right: &Right
+    # keyname: *PersonRole
+    # name: *Translated
+    # description: *Translated
+    # active: boolean
+
+Theme: &Theme #teemaleht koosneb k6ikidest obj millel teema kyljes
+    _path: /themes
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    on_first_page: boolean
+    image: *StrapiMedia
+    order: number
+    lead: *Translated
+    description: *Translated
+    namePrivate: text
+    galleries: 
+        - *Gallery
+    projects: 
+        - Project // kumbalt poolt kysime //miks see siin on?
+    people:
+        - Person
+
+OrganisationType: &OrganisationType #Büroo, õppeasutus, partner, 
+    _path: /organisation-types
+    name_private: text
+    name: *Translated
+    description: *Translated
+
+AcademicDegree: &AcademicDegree
+    et: text
+    en: text
+    ru: text
+
+AcademicField: &AcademicField
+    et: text
+    en: text
+    ru: text
+
+EduDegree: &EduDegree
+    academic_field: *AcademicField
+    # add_academic_field: text
+    academic_degree: *AcademicDegree
+
+Studies: &Studies
+    _path: /studies
+    organisation: Organisation
+    person_visibility: *AccessLevel
+    organisation_visibility: *AccessLevel 
+    start_date: date
+    end_date: date
+    education_degree: *EduDegree
+    name_private: text
+    person: Person
+    remote_id: UID
+
+WorkExperience: &WorkExperience
+    _path: /work-experienses
+    person_visibility: *AccessLevel
+    organisation_visibility: *AccessLevel
+    start_date: date
+    end_date: date
+    name_private: text
+    person: Person
+    # add_new_person: text
+    organisation: Organisation
+    # add_new_organisation: #Nii lisades peab olema keegi, kes käib lisatud infot regulaarselt rikastamas
+    #     name: text
+    #     www: text
+    remote_id: UID
+    role: *PersonRole
+
+Organisation: &Organisation 
+    _path: /organisations
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID name
+    slug_en: UID name
+    slug_ru: UID name
+    type: *OrganisationType
+    address: *Address
+    email: text
+    phone: text
+    www: text
+    image: *StrapiMedia
+    logo: *Logo #component
+    access: *AccessLevel ## SIIIIIIIN ON VAJA YMBER TEHA visibility
+    order: number
+    themes: 
+        - *Theme
+    groups: 
+        - *Group
+    description: *Translated
+    name_private: text
+    remote_id: UID
+    is_deleted: boolean
+    work_experiences: 
+        - *WorkExperience
+    studies:
+        - *Studies
+
+QualificationLevel: &QualificationLevel
+    _path: /qualification-levels
+    namePrivate: text
+    title: *Translated
+    description: *Translated
+    remote_id: UID
+
+Qualification: &Qualification
+    qualification_level: *QualificationLevel
+    valid_from: date
+    valid_until: date
+    registry_url: text
+
+Gender: &Gender
+    et: text
+    en: text
+    ru: text
+
+VisibilityDate: &VisibilityDate
+    value: date
+    visibility: *AccessLevel
+
+VisibilitySmall: &VisibilitySmall
+    value: text
+    visibility: *AccessLevel
+
+VisibilityEmail: &VisibilityEmail
+    email: email
+    visibility: *AccessLevel
+
+RolesInEvent: &RolesInEvent
+    _path: /roles-in-events
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi   
+    event: Event
+    event_visibility: *AccessLevel
+    person_visibility: *AccessLevel
+    name_private: text
+
+EventLocation: &EventLocation
+    name: text
+    room: text
+    address: *Address   
+
+Event: &Event #tegelikult laiem ÜRITUS, info läbi node mooduli
+    start_date: datetime
+    end_date: datetime
+    duration: number (minutites)
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID name_et
+    slug_en: UID name_en
+    slug_ru: UID name_ru
+    www: text
+    image: *StrapiMedia
+    video: text
+    galleries:
+        - *Gallery  
+    themes:
+        - *Theme 
+    location: *EventLocation
+    competitions: 
+        -   *Competition          
+    lead: *Translated
+    description: *Translated
+    articles: 
+        - Article
+    roles_in_events: 
+        -   *RolesInEvent
+    # organistaion: *Organisation #strapis pole
+
+Attachments: &Attachments
+    name: text
+    source_url: text
+    file: *StrapiMedia
+    order: number
+    file_remote_id: text
+
+Source: &Source
+    name: text
+    url: text
+    author: text
+
+ArticleType: &ArticleType // uudis, sisu, 
+    name: text
+    title: *Translated
+
+RolesInArticle: &RolesInArticle
+    _path: /roles-in-articles
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi
+    article: Article
+    article_visibility: *AccessLevel
+    person_visibility: *AccessLevel
+    name_private: text
+    order: number
+
+Article: &Article
+    _path: /articles
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    themes: 
+        -   *Theme
+    lead_image: *StrapiMedia # kas igas keeles voib erinev olla
+    video_url: text
+    galleries: 
+        -   *Gallery
+    publish_start: datetime
+    publish_end: datetime
+    published_et: boolean
+    published_en: boolean
+    published_ru: boolean
+    competition: 
+        -   *Competition
+    remote_id: number
+    attachments: #component
+        -   *Attachments
+    sources: #component
+        -   *Source
+    types: 
+        - *ArticleType
+    lead: *Translated
+    body: *Translated
+    events: 
+        -   *Event
+    visibility: *AccessLevel
+    roles_in_articles: #component
+        -   *RolesInArticle
+
+    # organistaion:
+    #     -   *Organisation
+    # group:
+    #     -   *Group
+
+Menu: &Menu # https://www.rapha.cc/ tuleb veel veidi uurida, vast artikkel pole ainus obj mida lisada
+    name_et: Translated
+    name_en: Translated
+    name_ru: Translated
+    order: number
+    articles: 
+        - *Article
+    custon_url: text
+    second_layer_menu: 
+        -   name: text
+            order: number
+            articles: 
+                - *Article
+            custom_url: text
+            third_layer_menu: 
+                -   name: text
+                    order: number
+                    articles: 
+                        - *Article
+                    custom_url: text
+ 
+ProjectType: &ProjectType
+    _path: /project-types
+    remote_id: UID
+    name: *Translated
+    description: *Translated
+    name_private: text
+
+RolesInProject: &RolesInProject
+    _path: /roles-in-projects
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi
+    project: Project
+    project_visibility: *AccessLevel
+    person_visibility: *AccessLevel
+    name_private: text
+    order: number
+
+Project: &Project #Looming
+    _path: /projects
+    title_et: text
+    title_en: text
+    title_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    description: *Translated
+    type:   *ProjectType
+    year_of_design: number
+    production_year: number
+    address: *Address
+    www: text
+    access: *AccessLevel
+    themes:
+        -   *Theme
+    remote_id: UID
+    namePrivate: text
+    project_gallery: *Gallery
+    customers:
+        organisation: *Organisation
+        person: Person
+    roles_in_projects: 
+        -   *RolesInProject
+
+    # files:                #Strapis pole gallery asendab?
+    #     -   *StrapiMedia
+
+    # related_competitions: #kas ühe projektiga saab olla seotud mitu võistulust
+    #     -   *Competition # competition ei saa muuta, aga saan muuta projekti
+
+CompetitionType: &CompetitionType
+    _path: /competition-types
+    name_private: text
+    name: *Translated
+    description: *Translated
+    remote_id: UID
+
+RolesInCompetition: &RolesInCompetition
+    _path: /roles-in-competitions
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi
+    competition: Competition
+    person_visibility: *AccessLevel
+    competition_visibility: *AccessLevel
+    name_private: text
+    order: number
+
+RelatedProject: &RelatedProject
+    project: *Project #puudu Strapis
+    jury_comment: text
+    jury_protocol: *StrapiMedia
+    links_to_interviews: text
+
+Competition: &Competition # sisestab admin //SIIIIIIIN vaata comp yle, nii ei saa et project k6rval
+    _path: /competitions
+    types: 
+        - *CompetitionType
+    question_deadline: datetime
+    start_date: datetime
+    apply_date: datetime
+    register_date: datetime
+    themes: 
+        - *Theme
+    articles: 
+        - Article
+    location: *Country
+    remote_id: UID          
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    description: *Translated
+    award_date_and_location: text
+    award_fund: text
+    organized_by_organisation:
+        -   *Organisation
+    organized_by_people:
+        -   *Person
+    related_projects: 
+        - *RelatedProject
+    roles_in_competitions: 
+        -   *RolesInCompetition
+
+Person: &Person #sisestab liige ise
+    _path: /people
+    forename: text
+    surmane: text
+    fullname: text
+    slug: UID (fullname)
+    EAL_member: boolean #kas seda vaja voi loeme user kyljest
+    users_permissions_user: *User
+
+    is_mailinglist_member: boolean
+    membership_no: number
+    membership_start_date: datetime
+    membership_end_date: datetime
+    membership_end_cause_id: datetime
+    notes: text
+    themes: 
+        - *Theme
+    national_id: number ()
+    home_address: *Address
+    remote_id: UID
+
+    profile_picture: *StrapiMedia
+    about: *Translated
+    visibility: *AccessLevel
+    CV_file: *FileAttached
+    qualifiction: *Qualification
+    membership_references: 
+        -   Person // viide iseendale, siin n4idata ei saa
+    gender: *Gender
+
+    public_address: *Address
+    birth_date: *VisibilityDate
+    death_date: *VisibilityDate
+    phone: *VisibilitySmall
+    mobile: *VisibilitySmall
+    email: *VisibilityEmail
+    website_url: *VisibilitySmall
+    phone_private: text
+    mobile_private: text
+    email_private: text
+    bulletin_pdf: boolean
+    is_deleted: boolean
+
+    roles_in_articles:
+        - *RolesInArticle
+    roles_in_competitions:
+        - *RolesInCompetition
+    roles_in_events:
+        - *RolesInEvent
+    roles_in_groups: 
+        - *RolesInGroup
+    roles_in_projects:
+        - *RolesInProject
+    work_experiences: 
+        - *WorkExperience
+    educations: #component add/select org
+        - *Studies
+
+    # added_articles: # vb pole hea lahendus, kuidas kustutada, mis juhtub siis kui 
+    #     -   visibility: *AccessLevel
+    #         role: *PersonRole
+    #         article: *Article # articli juures komponent authors, kui inimene lisatkse m]ne artikli juures autoriks peaks see kas siia tekkima, Kuidas kustutada????
+    # added_groups:
+    #     -   visibility: *AccessLevel
+    #         role: *PersonRole
+    #         group: *Group
+    # added_events:
+    #     -   visibility: *AccessLevel
+    #         role: *PersonRole
+    #         event: *Event
+    # added_competitions:
+    #     -   visibility: *AccessLevel
+    #         role: *PersonRole
+    #         competition: *Competition
+    # added_projects:
+    #     -   visibility: *AccessLevel
+    #         role: *PersonRole
+    #         project: *Project
+
+MissionStatement: &MissionStartement
+    _path: /m-ission-statements
+    statement_et: text
+    statement_en: text
+    statement_ru: text
+    namePrivate: text
+
+BannerMission: &BannerMisssion
+    _path: /front-banners
+    namePrivate: text
+    image: *StrapiMedia
+    project: *Project
+    photographers: *Person
+    mission_statement: *MissionStartement
+
+BannerFront: &BannerFront
+    _path: /banner-fronts
+    namePrivate: text
+    article: *Article
+    project: *Project
+    event: *Event
+    competition: *Competition
+    custom_media: *StrapiMedia
+    custom_title: *Translated
+    custom_button: *Translated 
