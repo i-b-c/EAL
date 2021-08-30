@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/roles-in-events",
+      "handler": "roles-in-event.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-events/count",
+      "handler": "roles-in-event.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-events/:id",
+      "handler": "roles-in-event.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/roles-in-events",
+      "handler": "roles-in-event.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/roles-in-events/:id",
+      "handler": "roles-in-event.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/roles-in-events/:id",
+      "handler": "roles-in-event.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

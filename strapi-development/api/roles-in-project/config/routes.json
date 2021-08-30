@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/roles-in-projects",
+      "handler": "roles-in-project.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-projects/count",
+      "handler": "roles-in-project.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-projects/:id",
+      "handler": "roles-in-project.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/roles-in-projects",
+      "handler": "roles-in-project.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/roles-in-projects/:id",
+      "handler": "roles-in-project.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/roles-in-projects/:id",
+      "handler": "roles-in-project.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

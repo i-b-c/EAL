@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/roles-in-competitions",
+      "handler": "roles-in-competition.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-competitions/count",
+      "handler": "roles-in-competition.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-competitions/:id",
+      "handler": "roles-in-competition.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/roles-in-competitions",
+      "handler": "roles-in-competition.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/roles-in-competitions/:id",
+      "handler": "roles-in-competition.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/roles-in-competitions/:id",
+      "handler": "roles-in-competition.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

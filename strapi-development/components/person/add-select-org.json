@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_person_add_select_orgs",
+  "info": {
+    "name": "AddSelectEduOrg",
+    "icon": "arrow-circle-down",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "select_organisation": {
+      "model": "organisation"
+    },
+    "add_new_organisation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "person.add-org-sub"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "visibility": {
+      "model": "access-level"
+    },
+    "education_degree": {
+      "type": "component",
+      "repeatable": false,
+      "component": "person.edu-degree"
+    }
+  }
+}

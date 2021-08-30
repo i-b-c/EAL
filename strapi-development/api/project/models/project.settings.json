@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "name": "Project",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title_et": {
+      "type": "string"
+    },
+    "title_en": {
+      "type": "string"
+    },
+    "title_ru": {
+      "type": "string"
+    },
+    "slug_et": {
+      "type": "uid",
+      "targetField": "title_et"
+    },
+    "slug_en": {
+      "type": "uid",
+      "targetField": "title_en"
+    },
+    "slug_ru": {
+      "type": "uid",
+      "targetField": "title_ru"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "type": {
+      "model": "project-type"
+    },
+    "year_of_design": {
+      "type": "integer"
+    },
+    "production_year": {
+      "type": "integer"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "address.address"
+    },
+    "www": {
+      "type": "string"
+    },
+    "access": {
+      "type": "component",
+      "repeatable": false,
+      "component": "roles.access"
+    },
+    "themes": {
+      "collection": "theme",
+      "via": "projects",
+      "dominant": true
+    },
+    "remote_id": {
+      "type": "uid"
+    },
+    "namePrivate": {
+      "type": "string"
+    },
+    "project_gallery": {
+      "model": "gallery"
+    },
+    "customers": {
+      "type": "component",
+      "repeatable": true,
+      "component": "roles.customer"
+    },
+    "roles_in_projects": {
+      "collection": "roles-in-project",
+      "via": "project"
+    }
+  }
+}

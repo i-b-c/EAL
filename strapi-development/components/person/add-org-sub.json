@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_person_add_org_subs",
+  "info": {
+    "name": "AddOrgSub",
+    "icon": "arrow-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "www": {
+      "type": "string"
+    }
+  }
+}

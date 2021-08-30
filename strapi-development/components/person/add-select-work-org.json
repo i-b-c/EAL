@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_person_add_select_work_orgs",
+  "info": {
+    "name": "AddSelectWorkOrg",
+    "icon": "american-sign-language-interpreting",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "select_organisation": {
+      "model": "organisation"
+    },
+    "add_new_organisation": {
+      "type": "component",
+      "repeatable": false,
+      "component": "person.add-org-sub"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "visibility": {
+      "model": "access-level"
+    },
+    "role_in_organisation": {
+      "type": "component",
+      "repeatable": true,
+      "component": "roles.role-in-person"
+    }
+  }
+}

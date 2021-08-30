@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "front_banners",
+  "info": {
+    "name": "BannerMission",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "namePrivate": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "project": {
+      "model": "project"
+    },
+    "photographers": {
+      "collection": "person"
+    },
+    "mission_statement": {
+      "model": "m-ission-statement"
+    }
+  }
+}

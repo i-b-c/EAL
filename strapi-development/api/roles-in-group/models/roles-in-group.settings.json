@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_in_groups",
+  "info": {
+    "name": "RolesInGroup",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "person": {
+      "via": "roles_in_groups",
+      "model": "person"
+    },
+    "group": {
+      "model": "group",
+      "via": "roles_in_groups"
+    },
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "group_visibility": {
+      "model": "access-level"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "name_private": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

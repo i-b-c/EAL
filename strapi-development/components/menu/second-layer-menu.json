@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_menu_second_layer_menus",
+  "info": {
+    "name": "SecondLayerMenu",
+    "icon": "angle-up",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "articles": {
+      "collection": "article"
+    },
+    "custom_url": {
+      "type": "string"
+    },
+    "third_layer_menu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "menu.third-layer-menu"
+    }
+  }
+}

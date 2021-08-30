@@ -1,0 +1,116 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organisations",
+  "info": {
+    "name": "Organisation",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name_et": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "slug_et": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name_et"
+    },
+    "type": {
+      "model": "organisation-type"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "address.address"
+    },
+    "email": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "phone": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "www": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "logo": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "media.logo"
+    },
+    "access": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "roles.access"
+    },
+    "order": {
+      "pluginOptions": {},
+      "type": "integer"
+    },
+    "themes": {
+      "collection": "theme"
+    },
+    "groups": {
+      "collection": "group"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "name_ru": {
+      "type": "string"
+    },
+    "slug_ru": {
+      "type": "uid",
+      "targetField": "name_ru"
+    },
+    "slug_en": {
+      "type": "uid",
+      "targetField": "name_en"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "name_private": {
+      "type": "string"
+    },
+    "remote_id": {
+      "type": "uid"
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "work_experiences": {
+      "via": "organisation",
+      "collection": "work-experience"
+    },
+    "studies": {
+      "via": "organisation",
+      "collection": "studies"
+    }
+  }
+}

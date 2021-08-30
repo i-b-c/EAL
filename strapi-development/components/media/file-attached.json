@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_media_file_attacheds",
+  "info": {
+    "name": "file_attached",
+    "icon": "file-contract",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name_public": {
+      "type": "string"
+    },
+    "file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

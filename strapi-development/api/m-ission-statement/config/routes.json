@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/m-ission-statements",
+      "handler": "m-ission-statement.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/m-ission-statements/count",
+      "handler": "m-ission-statement.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/m-ission-statements/:id",
+      "handler": "m-ission-statement.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/m-ission-statements",
+      "handler": "m-ission-statement.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/m-ission-statements/:id",
+      "handler": "m-ission-statement.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/m-ission-statements/:id",
+      "handler": "m-ission-statement.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

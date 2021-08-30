@@ -1,0 +1,188 @@
+{
+  "kind": "collectionType",
+  "collectionName": "people",
+  "info": {
+    "name": "person",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "forename": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "surname": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "fullname": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "slug": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "fullname"
+    },
+    "EAL_member": {
+      "pluginOptions": {},
+      "type": "boolean"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "person"
+    },
+    "is_mailinglist_member": {
+      "type": "boolean"
+    },
+    "membership_no": {
+      "type": "integer"
+    },
+    "membership_start_date": {
+      "type": "date"
+    },
+    "membership_end_date": {
+      "type": "date"
+    },
+    "membership_end_cause_id": {
+      "type": "text"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "themes": {
+      "collection": "theme",
+      "via": "people",
+      "dominant": true
+    },
+    "national_id": {
+      "type": "biginteger"
+    },
+    "home_address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "address.address"
+    },
+    "remote_id": {
+      "type": "uid"
+    },
+    "profile_picture": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "about": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "visibility": {
+      "model": "access-level"
+    },
+    "CV_file": {
+      "type": "component",
+      "repeatable": false,
+      "component": "media.file-attached"
+    },
+    "qualification": {
+      "type": "component",
+      "repeatable": false,
+      "component": "person.qualification"
+    },
+    "membership_references": {
+      "collection": "person"
+    },
+    "gender": {
+      "model": "gender"
+    },
+    "public_address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "address.address"
+    },
+    "birth_date": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.visibility-date"
+    },
+    "death_date": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.visibility-date"
+    },
+    "phone": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.visibility-small"
+    },
+    "mobile": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.visibility-small"
+    },
+    "email": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.visibility-email"
+    },
+    "website_url": {
+      "type": "component",
+      "repeatable": false,
+      "component": "general.visibility-small"
+    },
+    "phone_private": {
+      "type": "string"
+    },
+    "mobile_private": {
+      "type": "string"
+    },
+    "email_private": {
+      "type": "email"
+    },
+    "bulletin_pdf": {
+      "type": "boolean"
+    },
+    "is_deleted": {
+      "type": "boolean"
+    },
+    "roles_in_articles": {
+      "collection": "roles-in-article",
+      "via": "person"
+    },
+    "roles_in_competitions": {
+      "via": "person",
+      "collection": "roles-in-competition"
+    },
+    "roles_in_events": {
+      "collection": "roles-in-event",
+      "via": "person"
+    },
+    "roles_in_groups": {
+      "collection": "roles-in-group",
+      "via": "person"
+    },
+    "roles_in_projects": {
+      "collection": "roles-in-project",
+      "via": "person"
+    },
+    "work_experiences": {
+      "via": "person",
+      "collection": "work-experience"
+    },
+    "educations": {
+      "via": "person",
+      "collection": "studies"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_in_events",
+  "info": {
+    "name": "RolesInEvent",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "person": {
+      "via": "roles_in_events",
+      "model": "person"
+    },
+    "event": {
+      "via": "roles_in_events",
+      "model": "event"
+    },
+    "event_visibility": {
+      "model": "access-level"
+    },
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "name_private": {
+      "type": "string"
+    }
+  }
+}

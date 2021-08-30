@@ -2,19 +2,23 @@
   "kind": "collectionType",
   "collectionName": "article_types",
   "info": {
-    "name": "ArticleType"
+    "name": "ArticleType",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
       "type": "string"
     },
-    "description": {
-      "type": "richtext"
+    "title": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
     }
   }
 }

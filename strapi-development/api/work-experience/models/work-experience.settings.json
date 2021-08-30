@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "work_experiences",
+  "info": {
+    "name": "WorkExperience",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "organisation_visibility": {
+      "model": "access-level"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "name_private": {
+      "type": "string"
+    },
+    "person": {
+      "model": "person",
+      "via": "work_experiences"
+    },
+    "organisation": {
+      "model": "organisation",
+      "via": "work_experiences"
+    },
+    "remote_id": {
+      "type": "string"
+    },
+    "role": {
+      "model": "person-role"
+    }
+  }
+}

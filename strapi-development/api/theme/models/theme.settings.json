@@ -10,45 +10,19 @@
     "timestamps": true,
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "name_et": {
-      "type": "string"
-    },
-    "name_en": {
-      "type": "string"
-    },
-    "name_ru": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {}
     },
     "slug_et": {
       "type": "uid",
       "targetField": "name_et"
     },
-    "slug_en": {
-      "type": "uid",
-      "targetField": "name_en"
-    },
-    "slug_ru": {
-      "type": "uid",
-      "targetField": "name_ru"
-    },
     "on_first_page": {
-      "type": "boolean"
-    },
-    "title": {
-      "type": "component",
-      "repeatable": false,
-      "component": "translated.transalated-short"
-    },
-    "lead": {
-      "type": "component",
-      "repeatable": false,
-      "component": "translated.translated-long"
-    },
-    "description": {
-      "type": "component",
-      "repeatable": false,
-      "component": "translated.translated-long"
+      "type": "boolean",
+      "pluginOptions": {}
     },
     "image": {
       "model": "file",
@@ -59,10 +33,56 @@
         "videos"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "order": {
-      "type": "integer"
+      "type": "integer",
+      "pluginOptions": {}
+    },
+    "name_en": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "name_ru": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "slug_en": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name_en"
+    },
+    "slug_ru": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name_ru"
+    },
+    "lead": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "translated.translated-short"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "translated.translated-long"
+    },
+    "namePrivate": {
+      "type": "string"
+    },
+    "galleries": {
+      "collection": "gallery"
+    },
+    "projects": {
+      "via": "themes",
+      "collection": "project"
+    },
+    "people": {
+      "via": "themes",
+      "collection": "person"
     }
   }
 }

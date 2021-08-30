@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_person_qualifications",
+  "info": {
+    "name": "Qualification",
+    "icon": "highlighter"
+  },
+  "options": {},
+  "attributes": {
+    "qualification_level": {
+      "model": "qualification"
+    },
+    "valid_from": {
+      "type": "date"
+    },
+    "valid_until": {
+      "type": "date"
+    },
+    "registry_url": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "name": "Event",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "start_date": {
+      "pluginOptions": {},
+      "type": "datetime"
+    },
+    "end_date": {
+      "pluginOptions": {},
+      "type": "datetime"
+    },
+    "duration": {
+      "pluginOptions": {},
+      "type": "integer"
+    },
+    "name_et": {
+      "pluginOptions": {},
+      "type": "text"
+    },
+    "slug_et": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name_et"
+    },
+    "www": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "video": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "galleries": {
+      "collection": "gallery"
+    },
+    "themes": {
+      "collection": "theme"
+    },
+    "location": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "event.location"
+    },
+    "competitions": {
+      "collection": "competition"
+    },
+    "name_en": {
+      "type": "text"
+    },
+    "name_ru": {
+      "type": "text"
+    },
+    "slug_en": {
+      "type": "uid",
+      "targetField": "name_en"
+    },
+    "slug_ru": {
+      "type": "uid",
+      "targetField": "name_ru"
+    },
+    "lead": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "articles": {
+      "via": "events",
+      "collection": "article"
+    },
+    "roles_in_events": {
+      "collection": "roles-in-event",
+      "via": "event"
+    }
+  }
+}

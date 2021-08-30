@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_general_visibility_smalls",
+  "info": {
+    "name": "visibilitySmall",
+    "icon": "globe-asia"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

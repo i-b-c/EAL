@@ -10,40 +10,17 @@
     "timestamps": true,
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
-    "title_et": {
-      "type": "string"
-    },
-    "title_en": {
-      "type": "string"
-    },
-    "title_ru": {
-      "type": "string"
+    "name_et": {
+      "type": "string",
+      "pluginOptions": {}
     },
     "slug_et": {
-      "type": "uid",
-      "targetField": "title_et"
-    },
-    "slug_en": {
-      "type": "uid",
-      "targetField": "title_en"
-    },
-    "slug_ru": {
-      "type": "uid",
-      "targetField": "title_ru"
+      "type": "uid"
     },
     "themes": {
       "collection": "theme"
-    },
-    "lead": {
-      "type": "component",
-      "repeatable": false,
-      "component": "translated.translated-long"
-    },
-    "body": {
-      "type": "component",
-      "repeatable": false,
-      "component": "translated.translated-long"
     },
     "lead_image": {
       "model": "file",
@@ -54,28 +31,27 @@
         "videos"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
     },
     "video_url": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {}
     },
     "galleries": {
       "collection": "gallery"
     },
     "publish_start": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {}
     },
     "publish_end": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {}
     },
     "published_et": {
-      "type": "boolean"
-    },
-    "published_en": {
-      "type": "boolean"
-    },
-    "published_ru": {
-      "type": "boolean"
+      "type": "boolean",
+      "pluginOptions": {}
     },
     "competitions": {
       "via": "articles",
@@ -83,6 +59,74 @@
     },
     "remote_id": {
       "type": "uid"
+    },
+    "attachments": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {},
+      "component": "article.attachment"
+    },
+    "sources": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {},
+      "component": "article.source"
+    },
+    "types": {
+      "collection": "article-type"
+    },
+    "name_en": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "name_ru": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "slug_en": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name_en"
+    },
+    "slug_ru": {
+      "pluginOptions": {},
+      "type": "uid",
+      "targetField": "name_ru"
+    },
+    "published_en": {
+      "pluginOptions": {},
+      "type": "boolean"
+    },
+    "published_ru": {
+      "pluginOptions": {},
+      "type": "boolean"
+    },
+    "lead": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "translated.translated-long"
+    },
+    "body": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "translated.translated-long"
+    },
+    "events": {
+      "collection": "event",
+      "via": "articles",
+      "dominant": true
+    },
+    "visibility": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {},
+      "component": "roles.access"
+    },
+    "roles_in_articles": {
+      "collection": "roles-in-article",
+      "via": "article"
     }
   }
 }

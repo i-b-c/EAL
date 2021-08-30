@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_roles_article_authors",
+  "info": {
+    "name": "RoleIn",
+    "icon": "apple-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "select_person": {
+      "model": "person"
+    },
+    "select_role": {
+      "model": "person-role"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

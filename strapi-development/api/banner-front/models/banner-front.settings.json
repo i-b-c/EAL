@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "banner_fronts",
+  "info": {
+    "name": "BannerFront",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "namePrivate": {
+      "type": "string",
+      "required": true
+    },
+    "article": {
+      "model": "article"
+    },
+    "project": {
+      "model": "project"
+    },
+    "event": {
+      "model": "event"
+    },
+    "competition": {
+      "model": "competition"
+    },
+    "custom_media": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "custom_title": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    },
+    "custom_button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    }
+  }
+}

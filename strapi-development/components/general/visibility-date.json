@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_general_visibility_dates",
+  "info": {
+    "name": "visibilityDate",
+    "icon": "globe-europe"
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "required": false
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

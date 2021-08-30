@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_person_edu_degrees",
+  "info": {
+    "name": "EduDegree",
+    "icon": "gavel",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "academic_field": {
+      "model": "academic-field"
+    },
+    "academic_degree": {
+      "model": "academic-degree"
+    }
+  }
+}

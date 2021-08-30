@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_roles_customers",
+  "info": {
+    "name": "Customer",
+    "icon": "money-bill-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "organisation": {
+      "model": "organisation"
+    },
+    "person": {
+      "model": "person"
+    }
+  }
+}

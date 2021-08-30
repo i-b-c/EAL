@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "groups",
+  "info": {
+    "name": "Group",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "users_permissions_users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "groups",
+      "dominant": true
+    },
+    "roles_in_group": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {},
+      "component": "roles.article-author"
+    },
+    "name": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "remote_id": {
+      "type": "uid"
+    },
+    "namePrivate": {
+      "type": "string"
+    },
+    "visibility": {
+      "model": "access-level"
+    },
+    "roles_in_groups": {
+      "via": "group",
+      "collection": "roles-in-group"
+    }
+  }
+}

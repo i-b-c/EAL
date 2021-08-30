@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "competition_types",
   "info": {
-    "name": "CompetitionType"
+    "name": "CompetitionType",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -10,11 +11,21 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "name": {
+    "name_private": {
       "type": "string"
     },
+    "name": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    },
     "description": {
-      "type": "richtext"
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "remote_id": {
+      "type": "uid"
     }
   }
 }

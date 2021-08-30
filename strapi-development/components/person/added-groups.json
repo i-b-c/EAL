@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_person_added_groups",
+  "info": {
+    "name": "AddedGroups",
+    "icon": "address-book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "group": {
+      "model": "group"
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

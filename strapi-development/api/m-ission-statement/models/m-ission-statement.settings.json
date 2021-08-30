@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "m_ission_statements",
+  "info": {
+    "name": "MissionStatement",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "statement_et": {
+      "type": "text",
+      "required": true
+    },
+    "statement_en": {
+      "type": "text"
+    },
+    "statement_ru": {
+      "type": "text"
+    },
+    "namePrivate": {
+      "type": "string"
+    }
+  }
+}

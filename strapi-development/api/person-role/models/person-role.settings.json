@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "person_roles",
+  "info": {
+    "name": "PersonRole",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "namePrivate": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "active": {
+      "pluginOptions": {},
+      "type": "boolean"
+    },
+    "groups": {
+      "collection": "group"
+    },
+    "people": {
+      "collection": "person"
+    },
+    "roleName": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    },
+    "roleDescription": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

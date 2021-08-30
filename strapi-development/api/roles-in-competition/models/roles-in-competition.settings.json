@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_in_competitions",
+  "info": {
+    "name": "RolesInCompetition",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "person": {
+      "model": "person",
+      "via": "roles_in_competitions"
+    },
+    "competition": {
+      "model": "competition",
+      "via": "roles_in_competitions"
+    },
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "competition_visibility": {
+      "model": "access-level"
+    },
+    "name_private": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_person_added_competitions",
+  "info": {
+    "name": "AddedCompetitions",
+    "icon": "align-right"
+  },
+  "options": {},
+  "attributes": {
+    "visibility": {
+      "model": "access-level"
+    },
+    "role": {
+      "model": "person-role"
+    },
+    "competition": {
+      "model": "competition"
+    }
+  }
+}
