@@ -12,7 +12,7 @@ fs.mkdirSync(fetchDirPath, { recursive: true })
 fs.mkdirSync(allStrapidatapath, { recursive: true })
 
 const DOMAIN = process.env['DOMAIN'] || false
-const modelFile = path.join(__dirname, '..', 'docs', 'minimodel.yaml')
+const modelFile = path.join(__dirname, '..', 'docs', 'datamodel.yaml')
 const DATAMODEL = yaml.load(fs.readFileSync(modelFile, 'utf8'))
 
 for (const key in DATAMODEL) {

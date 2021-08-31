@@ -1,3 +1,13 @@
+# Right: &Right
+    # keyname: *PersonRole
+    # name: *Translated
+    # description: *Translated
+    # active: boolean
+
+User: &User
+    email: email
+    person: Person 
+
 StrapiMedia: &StrapiMedia
     id: (number)
     name: (text)
@@ -71,6 +81,18 @@ AccessLevel: &AccessLevel
     name: *Translated
     description: *Translated
 
+PersonRole: &PersonRole 
+    _path: /person-roles
+    namePrivate: text
+    active: boolean #PEAKS OLEMA visibility
+    groups: # roll annab l4bi grupi 6iguseid!
+        - Group
+    people: 
+        - Person
+    roleName: *Translated
+    roleDescription: *Translated 
+    order: number
+
 RoleIn: &RoleIn # PEaks 4ra muutma selected!!!!
     select_person: Person
     # add_new_person: text
@@ -93,6 +115,7 @@ GalleryImages: &GalleryImages
     photo_by: *RoleIn
 
 Gallery: &Gallery
+    _path: /galleries
     # name: text
     order: number
     front_image: *StrapiMedia # vb pole vaja, Jaan küsib
@@ -108,56 +131,32 @@ Gallery: &Gallery
     slug_en: UID
     slug_ru: UID
 
-User: &User
-    email: email
-    person: Person 
-
 City: &City
+    _path: /cities
     name_et: text
     name_en: text
     name_ru: text
 
 Parish: &Parish
+    _path: /parishes
     name_et: text
     name_en: text
     name_ru: text
 
 County: &County
+    _path: /counties
     name_et: text
     name_en: text
     name_ru: text
 
 Country: &Country
+    _path: /countries
     code: text
     name_et: text
     name_en: text
     name_ru: text
 
-Address: &Address #Strapis poolik, pole sees k6ik v4ljad
-    street: text 
-    city: *City 
-    parish: *Parish 
-    county: *Country 
-    postalcode: text
-    country: *Country
-    map_link: text
-    # add_city: text
-    # add_parish: text
-    # add-county: text
-    visibility: *AccessLevel
-
-PersonRole: &PersonRole #Strapis ei saa Role olla
-    _path: /person-roles
-    namePrivate: text
-    active: boolean #PEAKS OLEMA visibility
-    groups: # roll annab l4bi grupi 6iguseid!
-        - Group
-    people: 
-        - Person
-    roleName: *Translated
-    roleDescription: *Translated 
-    order: number
-
+#....#....#....#....# Group
 RolesInGroup: &RolesInGroup
     _path: /roles-in-groups
     role: *PersonRole
@@ -168,7 +167,7 @@ RolesInGroup: &RolesInGroup
     start_date: date
     end_date: date
     name_private: text
-    order: number
+    order: number #kui t4hestiku j4rgi siis kas on vaja?
 
 Group: &Group # grupp labi userite annab hetkel 6iguseid
     _path: /groups
@@ -182,11 +181,18 @@ Group: &Group # grupp labi userite annab hetkel 6iguseid
     roles_in_groups:
         -   *RolesInGroup
 
-# Right: &Right
-    # keyname: *PersonRole
-    # name: *Translated
-    # description: *Translated
-    # active: boolean
+Address: &Address #Strapis poolik
+    street: text 
+    city: *City 
+    parish: *Parish 
+    county: *Country 
+    postalcode: text
+    country: *Country
+    map_link: text
+    # add_city: text
+    # add_parish: text
+    # add-county: text
+    visibility: *AccessLevel
 
 Theme: &Theme #teemaleht koosneb k6ikidest obj millel teema kyljes
     _path: /themes
@@ -209,25 +215,20 @@ Theme: &Theme #teemaleht koosneb k6ikidest obj millel teema kyljes
     people:
         - Person
 
-OrganisationType: &OrganisationType #Büroo, õppeasutus, partner, 
-    _path: /organisation-types
-    name_private: text
-    name: *Translated
-    description: *Translated
-
 AcademicDegree: &AcademicDegree
+    _path: /academic-degrees
     et: text
     en: text
     ru: text
 
 AcademicField: &AcademicField
+    _path: /academic-fields
     et: text
     en: text
     ru: text
 
 EduDegree: &EduDegree
     academic_field: *AcademicField
-    # add_academic_field: text
     academic_degree: *AcademicDegree
 
 Studies: &Studies
@@ -243,20 +244,22 @@ Studies: &Studies
     remote_id: UID
 
 WorkExperience: &WorkExperience
-    _path: /work-experienses
+    _path: /work-experiences
     person_visibility: *AccessLevel
     organisation_visibility: *AccessLevel
     start_date: date
     end_date: date
     name_private: text
     person: Person
-    # add_new_person: text
     organisation: Organisation
-    # add_new_organisation: #Nii lisades peab olema keegi, kes käib lisatud infot regulaarselt rikastamas
-    #     name: text
-    #     www: text
     remote_id: UID
     role: *PersonRole
+
+OrganisationType: &OrganisationType #Büroo, õppeasutus, partner, 
+    _path: /organisation-types
+    name_private: text
+    name: *Translated
+    description: *Translated
 
 Organisation: &Organisation 
     _path: /organisations
@@ -288,36 +291,109 @@ Organisation: &Organisation
     studies:
         - *Studies
 
-QualificationLevel: &QualificationLevel
-    _path: /qualification-levels
+#....#....#....#....# Project
+ProjectType: &ProjectType
+    _path: /project-types
+    remote_id: UID
+    name: *Translated
+    description: *Translated
+    name_private: text
+
+RolesInProject: &RolesInProject
+    _path: /roles-in-projects
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi
+    project: Project
+    project_visibility: *AccessLevel
+    person_visibility: *AccessLevel
+    name_private: text
+    order: number
+
+Customer: &Customer
+    organisation: *Organisation
+    perosn: Person
+
+Project: &Project #Looming
+    _path: /projects
+    title_et: text
+    title_en: text
+    title_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    description: *Translated
+    type:   *ProjectType
+    year_of_design: number
+    production_year: number
+    address: *Address
+    www: text
+    access: *AccessLevel
+    themes:
+        -   *Theme
+    remote_id: UID
     namePrivate: text
-    title: *Translated
+    project_gallery: *Gallery
+    customers:
+        -   *Customer
+    roles_in_projects: 
+        -   *RolesInProject
+
+CompetitionType: &CompetitionType
+    _path: /competition-types
+    name_private: text
+    name: *Translated
     description: *Translated
     remote_id: UID
 
-Qualification: &Qualification
-    qualification_level: *QualificationLevel
-    valid_from: date
-    valid_until: date
-    registry_url: text
+RolesInCompetition: &RolesInCompetition
+    _path: /roles-in-competitions
+    role: *PersonRole
+    person: Person # kuvame tähestiku järgi
+    competition: Competition
+    person_visibility: *AccessLevel
+    competition_visibility: *AccessLevel
+    name_private: text
+    order: number
 
-Gender: &Gender
-    et: text
-    en: text
-    ru: text
+RelatedProject: &RelatedProject
+    project: *Project 
+    jury_comment: text
+    jury_protocol: *StrapiMedia
+    links_to_interviews: text
 
-VisibilityDate: &VisibilityDate
-    value: date
-    visibility: *AccessLevel
+Competition: &Competition # sisestab admin 
+    _path: /competitions
+    types: 
+        -   *CompetitionType
+    question_deadline: datetime
+    start_date: datetime
+    apply_date: datetime
+    register_date: datetime
+    themes: 
+        -   *Theme
+    articles: 
+        -   Article
+    location: *Country
+    remote_id: UID          
+    name_et: text
+    name_en: text
+    name_ru: text
+    slug_et: UID
+    slug_en: UID
+    slug_ru: UID
+    description: *Translated
+    award_date_and_location: text
+    award_fund: text
+    organized_by_organisation:
+        -   *Organisation
+    organized_by_people:
+        -   Person
+    related_projects: 
+        -   *RelatedProject
+    roles_in_competitions: 
+        -   *RolesInCompetition
 
-VisibilitySmall: &VisibilitySmall
-    value: text
-    visibility: *AccessLevel
-
-VisibilityEmail: &VisibilityEmail
-    email: email
-    visibility: *AccessLevel
-
+#....#....#....#....# Event
 RolesInEvent: &RolesInEvent
     _path: /roles-in-events
     role: *PersonRole
@@ -333,6 +409,7 @@ EventLocation: &EventLocation
     address: *Address   
 
 Event: &Event #tegelikult laiem ÜRITUS, info läbi node mooduli
+    _path: /events
     start_date: datetime
     end_date: datetime
     duration: number (minutites)
@@ -360,6 +437,7 @@ Event: &Event #tegelikult laiem ÜRITUS, info läbi node mooduli
         -   *RolesInEvent
     # organistaion: *Organisation #strapis pole
 
+#....#....#....#....# Article
 Attachments: &Attachments
     name: text
     source_url: text
@@ -372,7 +450,8 @@ Source: &Source
     url: text
     author: text
 
-ArticleType: &ArticleType // uudis, sisu, 
+ArticleType: &ArticleType # uudis, sisu, 
+    _path: /article-types
     name: text
     title: *Translated
 
@@ -399,7 +478,7 @@ Article: &Article
     lead_image: *StrapiMedia # kas igas keeles voib erinev olla
     video_url: text
     galleries: 
-        -   *Gallery
+        -   *Gallery # kas see v6ib igas keeles erinev olla?
     publish_start: datetime
     publish_end: datetime
     published_et: boolean
@@ -427,138 +506,46 @@ Article: &Article
     # group:
     #     -   *Group
 
-Menu: &Menu # https://www.rapha.cc/ tuleb veel veidi uurida, vast artikkel pole ainus obj mida lisada
-    name_et: Translated
-    name_en: Translated
-    name_ru: Translated
-    order: number
-    articles: 
-        - *Article
-    custon_url: text
-    second_layer_menu: 
-        -   name: text
-            order: number
-            articles: 
-                - *Article
-            custom_url: text
-            third_layer_menu: 
-                -   name: text
-                    order: number
-                    articles: 
-                        - *Article
-                    custom_url: text
- 
-ProjectType: &ProjectType
-    _path: /project-types
-    remote_id: UID
-    name: *Translated
-    description: *Translated
-    name_private: text
+#....#....#....#....# Person
 
-RolesInProject: &RolesInProject
-    _path: /roles-in-projects
-    role: *PersonRole
-    person: Person # kuvame tähestiku järgi
-    project: Project
-    project_visibility: *AccessLevel
-    person_visibility: *AccessLevel
-    name_private: text
-    order: number
-
-Project: &Project #Looming
-    _path: /projects
-    title_et: text
-    title_en: text
-    title_ru: text
-    slug_et: UID
-    slug_en: UID
-    slug_ru: UID
-    description: *Translated
-    type:   *ProjectType
-    year_of_design: number
-    production_year: number
-    address: *Address
-    www: text
-    access: *AccessLevel
-    themes:
-        -   *Theme
-    remote_id: UID
+QualificationLevel: &QualificationLevel
+    _path: /qualifications
     namePrivate: text
-    project_gallery: *Gallery
-    customers:
-        organisation: *Organisation
-        person: Person
-    roles_in_projects: 
-        -   *RolesInProject
-
-    # files:                #Strapis pole gallery asendab?
-    #     -   *StrapiMedia
-
-    # related_competitions: #kas ühe projektiga saab olla seotud mitu võistulust
-    #     -   *Competition # competition ei saa muuta, aga saan muuta projekti
-
-CompetitionType: &CompetitionType
-    _path: /competition-types
-    name_private: text
-    name: *Translated
+    title: *Translated
     description: *Translated
     remote_id: UID
 
-RolesInCompetition: &RolesInCompetition
-    _path: /roles-in-competitions
-    role: *PersonRole
-    person: Person # kuvame tähestiku järgi
-    competition: Competition
-    person_visibility: *AccessLevel
-    competition_visibility: *AccessLevel
-    name_private: text
-    order: number
+Qualification: &Qualification
+    qualification_level: *QualificationLevel
+    valid_from: date
+    valid_until: date
+    registry_url: text
 
-RelatedProject: &RelatedProject
-    project: *Project #puudu Strapis
-    jury_comment: text
-    jury_protocol: *StrapiMedia
-    links_to_interviews: text
+Gender: &Gender
+    _path: /genders
+    et: text
+    en: text
+    ru: text
 
-Competition: &Competition # sisestab admin //SIIIIIIIN vaata comp yle, nii ei saa et project k6rval
-    _path: /competitions
-    types: 
-        - *CompetitionType
-    question_deadline: datetime
-    start_date: datetime
-    apply_date: datetime
-    register_date: datetime
-    themes: 
-        - *Theme
-    articles: 
-        - Article
-    location: *Country
-    remote_id: UID          
-    name_et: text
-    name_en: text
-    name_ru: text
-    slug_et: UID
-    slug_en: UID
-    slug_ru: UID
-    description: *Translated
-    award_date_and_location: text
-    award_fund: text
-    organized_by_organisation:
-        -   *Organisation
-    organized_by_people:
-        -   *Person
-    related_projects: 
-        - *RelatedProject
-    roles_in_competitions: 
-        -   *RolesInCompetition
+VisibilityDate: &VisibilityDate
+    value: date
+    visibility: *AccessLevel
 
-Person: &Person #sisestab liige ise
+VisibilitySmall: &VisibilitySmall
+    value: text
+    visibility: *AccessLevel
+
+VisibilityEmail: &VisibilityEmail
+    email: email
+    visibility: *AccessLevel
+
+Person: &Person # sisestab inimene ise
     _path: /people
     forename: text
     surmane: text
     fullname: text
     slug: UID (fullname)
-    EAL_member: boolean #kas seda vaja voi loeme user kyljest
+    EAL_member: boolean 
     users_permissions_user: *User
 
     is_mailinglist_member: boolean
@@ -569,7 +556,7 @@ Person: &Person #sisestab liige ise
     notes: text
     themes: 
         - *Theme
-    national_id: number ()
+    national_id: number 
     home_address: *Address
     remote_id: UID
 
@@ -579,7 +566,7 @@ Person: &Person #sisestab liige ise
     CV_file: *FileAttached
     qualifiction: *Qualification
     membership_references: 
-        -   Person // viide iseendale, siin n4idata ei saa
+        -   Person
     gender: *Gender
 
     public_address: *Address
@@ -610,27 +597,6 @@ Person: &Person #sisestab liige ise
     educations: #component add/select org
         - *Studies
 
-    # added_articles: # vb pole hea lahendus, kuidas kustutada, mis juhtub siis kui 
-    #     -   visibility: *AccessLevel
-    #         role: *PersonRole
-    #         article: *Article # articli juures komponent authors, kui inimene lisatkse m]ne artikli juures autoriks peaks see kas siia tekkima, Kuidas kustutada????
-    # added_groups:
-    #     -   visibility: *AccessLevel
-    #         role: *PersonRole
-    #         group: *Group
-    # added_events:
-    #     -   visibility: *AccessLevel
-    #         role: *PersonRole
-    #         event: *Event
-    # added_competitions:
-    #     -   visibility: *AccessLevel
-    #         role: *PersonRole
-    #         competition: *Competition
-    # added_projects:
-    #     -   visibility: *AccessLevel
-    #         role: *PersonRole
-    #         project: *Project
-
 MissionStatement: &MissionStartement
     _path: /m-ission-statements
     statement_et: text
@@ -656,3 +622,33 @@ BannerFront: &BannerFront
     custom_media: *StrapiMedia
     custom_title: *Translated
     custom_button: *Translated 
+
+#....#....#....#....# Menu
+
+ThirdLayerMenu: &ThirdLayerMenu
+    name: text
+    order: number
+    articles: 
+        - *Article
+    custom_url: text
+
+SecondLeyerMenu: &SecondLeyerMenu
+    name: text
+    order: number
+    articles: 
+        - *Article
+    custom_url: text
+    third_layer_menu: 
+        -  *ThirdLayerMenu
+
+Menu: &Menu # https://www.rapha.cc/ tuleb veel veidi uurida, vast artikkel pole ainus obj mida lisada
+    _path: /menus
+    name_et: text
+    name_en: text
+    name_ru: text
+    order: number
+    articles: 
+        - *Article
+    custon_url: text
+    second_layer_menu: 
+        -   *SecondLeyerMenu

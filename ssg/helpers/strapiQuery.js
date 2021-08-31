@@ -18,7 +18,7 @@ const path = require('path')
 const { strapiAuth } = require('./strapiAuth.js')
 const { spin } = require("./spinner")
 
-const DATAMODEL_PATH = path.join(__dirname, '..', 'docs', 'minimodel.yaml')
+const DATAMODEL_PATH = path.join(__dirname, '..', 'docs', 'datamodel.yaml')
 const DATAMODEL = yaml.load(fs.readFileSync(DATAMODEL_PATH, 'utf8'))
 
 var TOKEN = ''
