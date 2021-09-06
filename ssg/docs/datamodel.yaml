@@ -94,10 +94,8 @@ PersonRole: &PersonRole
     order: number
 
 RoleIn: &RoleIn # PEaks 4ra muutma selected!!!!
-    select_person: Person
-    # add_new_person: text
-    select_role: PersonRole
-    # add_new_role: text
+    person: Person
+    role: PersonRole
     order: number 
 
 FileAttached: &FileAttached
@@ -500,6 +498,8 @@ Article: &Article
     visibility: *AccessLevel
     roles_in_articles: #component
         -   *RolesInArticle
+    menu_categories:
+        -   MenuCategory
 
     # organistaion:
     #     -   *Organisation
@@ -625,30 +625,34 @@ BannerFront: &BannerFront
 
 #....#....#....#....# Menu
 
-ThirdLayerMenu: &ThirdLayerMenu
-    name: text
+Navigation: &Navigation
+    _path: /navigations
+    parent: Menu
+    child: Menu
     order: number
-    articles: 
-        - *Article
-    custom_url: text
+    name_private: text (parent order child )
 
-SecondLeyerMenu: &SecondLeyerMenu
+MenuCategory: &MenuCategory
+    _path: /menu-categories
     name: text
-    order: number
-    articles: 
-        - *Article
-    custom_url: text
-    third_layer_menu: 
-        -  *ThirdLayerMenu
+    menu: Menu
+    # articles:
+    #     -   *Article
+    # people:
+    #     -   *Person
+    # projects:
+    #     -   *Project
+    # competitions:
+    #     -   *Competition
+    # events:
+    #     -   *Event
+
 
 Menu: &Menu # https://www.rapha.cc/ tuleb veel veidi uurida, vast artikkel pole ainus obj mida lisada
     _path: /menus
-    name_et: text
-    name_en: text
-    name_ru: text
-    order: number
-    articles: 
-        - *Article
-    custon_url: text
-    second_layer_menu: 
-        -   *SecondLeyerMenu
+    title_et: text
+    title_en: text
+    title_ru: text
+    categories: 
+        - *MenuCategory
+    visibility: *AccessLevel
