@@ -255,7 +255,7 @@ WorkExperience: &WorkExperience
 
 OrganisationType: &OrganisationType #Büroo, õppeasutus, partner, 
     _path: /organisation-types
-    name_private: text
+    namePrivate: text
     name: *Translated
     description: *Translated
 
