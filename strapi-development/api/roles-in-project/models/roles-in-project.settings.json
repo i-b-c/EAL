@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_in_projects",
+  "info": {
+    "name": "RolesInProject",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "person": {
+      "via": "roles_in_projects",
+      "model": "person"
+    },
+    "project": {
+      "via": "roles_in_projects",
+      "model": "project"
+    },
+    "project_visibility": {
+      "model": "access-level"
+    },
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "name_private": {
+      "type": "string"
+    }
+  }
+}

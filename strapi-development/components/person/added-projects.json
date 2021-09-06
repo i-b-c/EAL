@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_person_added_projects",
+  "info": {
+    "name": "AddedProjects",
+    "icon": "archway"
+  },
+  "options": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "project": {
+      "model": "project"
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

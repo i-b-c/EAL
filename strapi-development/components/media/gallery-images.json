@@ -2,26 +2,44 @@
   "collectionName": "components_media_gallery_images",
   "info": {
     "name": "GalleryImages",
-    "icon": "angle-left"
+    "icon": "angle-left",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "name": {
+    "namePrivate": {
       "type": "string"
     },
     "order": {
       "type": "integer"
     },
-    "files": {
-      "collection": "file",
+    "image": {
+      "model": "file",
       "via": "related",
       "allowedTypes": [
-        "images",
-        "files",
-        "videos"
+        "images"
       ],
       "plugin": "upload",
-      "required": false
+      "required": false,
+      "pluginOptions": {}
+    },
+    "file_remote_id": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-short"
+    },
+    "file_attached": {
+      "type": "component",
+      "repeatable": false,
+      "component": "media.file-attached"
+    },
+    "photo_by": {
+      "type": "component",
+      "repeatable": false,
+      "component": "roles.article-author"
     }
   }
 }

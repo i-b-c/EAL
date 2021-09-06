@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/roles-in-articles",
+      "handler": "roles-in-article.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-articles/count",
+      "handler": "roles-in-article.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-articles/:id",
+      "handler": "roles-in-article.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/roles-in-articles",
+      "handler": "roles-in-article.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/roles-in-articles/:id",
+      "handler": "roles-in-article.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/roles-in-articles/:id",
+      "handler": "roles-in-article.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

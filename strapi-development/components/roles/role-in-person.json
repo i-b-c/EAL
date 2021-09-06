@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_roles_role_in_people",
+  "info": {
+    "name": "RoleInPerson",
+    "icon": "air-freshener",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "select_role": {
+      "model": "person-role"
+    },
+    "add_new_role": {
+      "type": "string"
+    }
+  }
+}

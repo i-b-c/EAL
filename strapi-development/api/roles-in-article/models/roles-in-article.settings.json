@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_in_articles",
+  "info": {
+    "name": "RolesInArticle",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "role": {
+      "model": "person-role"
+    },
+    "person": {
+      "via": "roles_in_articles",
+      "model": "person"
+    },
+    "article": {
+      "via": "roles_in_articles",
+      "model": "article"
+    },
+    "article_visibility": {
+      "model": "access-level"
+    },
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "name_private": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

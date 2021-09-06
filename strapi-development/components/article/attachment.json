@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_article_attachments",
+  "info": {
+    "name": "Attachment",
+    "icon": "address-card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "file": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "order": {
+      "type": "integer"
+    },
+    "file_remote_id": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/roles-in-groups",
+      "handler": "roles-in-group.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-groups/count",
+      "handler": "roles-in-group.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/roles-in-groups/:id",
+      "handler": "roles-in-group.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/roles-in-groups",
+      "handler": "roles-in-group.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/roles-in-groups/:id",
+      "handler": "roles-in-group.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/roles-in-groups/:id",
+      "handler": "roles-in-group.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

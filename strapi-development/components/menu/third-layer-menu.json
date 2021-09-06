@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_menu_third_layer_menus",
+  "info": {
+    "name": "ThirdLayerMenu",
+    "icon": "angle-double-up"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "articles": {
+      "collection": "article"
+    },
+    "custom_url": {
+      "type": "string"
+    }
+  }
+}

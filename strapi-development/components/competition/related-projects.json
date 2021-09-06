@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_competition_related_projects",
+  "info": {
+    "name": "RelatedProjects",
+    "icon": "arrow-alt-circle-up",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "jury_comment": {
+      "type": "richtext"
+    },
+    "jury_protocol": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "links_to_interviews": {
+      "type": "text"
+    },
+    "project": {
+      "model": "project"
+    }
+  }
+}

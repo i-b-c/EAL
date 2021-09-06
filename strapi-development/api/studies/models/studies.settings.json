@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "studies",
+  "info": {
+    "name": "Studies",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "organisation": {
+      "model": "organisation",
+      "via": "studies"
+    },
+    "person_visibility": {
+      "model": "access-level"
+    },
+    "organisation_visibility": {
+      "model": "access-level"
+    },
+    "start_date": {
+      "type": "date"
+    },
+    "end_date": {
+      "type": "date"
+    },
+    "education_degree": {
+      "type": "component",
+      "repeatable": false,
+      "component": "person.edu-degree"
+    },
+    "name_private": {
+      "type": "string"
+    },
+    "person": {
+      "model": "person",
+      "via": "educations"
+    },
+    "remote_id": {
+      "type": "string"
+    }
+  }
+}

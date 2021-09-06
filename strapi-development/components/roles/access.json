@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_roles_accesses",
+  "info": {
+    "name": "Access",
+    "icon": "ankh",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "access_level": {
+      "model": "access-level"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_general_visibility_emails",
+  "info": {
+    "name": "visibilityEmail",
+    "icon": "globe-africa"
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "email"
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menus",
+  "info": {
+    "name": "Menu",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "order": {
+      "pluginOptions": {},
+      "type": "integer"
+    },
+    "articles": {
+      "collection": "article"
+    },
+    "custom_url": {
+      "pluginOptions": {},
+      "type": "string"
+    },
+    "second_layer_menu": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {},
+      "component": "menu.second-layer-menu"
+    }
+  }
+}

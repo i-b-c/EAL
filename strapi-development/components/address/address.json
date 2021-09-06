@@ -1,0 +1,44 @@
+{
+  "collectionName": "components_address_addresses",
+  "info": {
+    "name": "Address",
+    "icon": "align-center",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "street": {
+      "type": "string"
+    },
+    "map_link": {
+      "type": "text"
+    },
+    "postalcode": {
+      "type": "string"
+    },
+    "city": {
+      "model": "city"
+    },
+    "parish": {
+      "model": "parish"
+    },
+    "county": {
+      "model": "county"
+    },
+    "country": {
+      "model": "country"
+    },
+    "add_city": {
+      "type": "string"
+    },
+    "add_parish": {
+      "type": "string"
+    },
+    "add_county": {
+      "type": "string"
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}

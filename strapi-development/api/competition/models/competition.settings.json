@@ -10,24 +10,26 @@
     "timestamps": true,
     "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "types": {
       "collection": "competition-type"
     },
     "question_deadline": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {}
     },
     "start_date": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {}
     },
     "apply_date": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {}
     },
     "register_date": {
-      "type": "datetime"
-    },
-    "award_date": {
-      "type": "datetime"
+      "type": "datetime",
+      "pluginOptions": {}
     },
     "themes": {
       "collection": "theme"
@@ -40,24 +42,22 @@
     "location": {
       "model": "country"
     },
-    "EAL_organized": {
-      "type": "boolean"
-    },
     "remote_id": {
       "type": "uid"
     },
     "name_et": {
-      "type": "string"
-    },
-    "name_en": {
-      "type": "string"
-    },
-    "name_ru": {
-      "type": "string"
+      "type": "text",
+      "pluginOptions": {}
     },
     "slug_et": {
       "type": "uid",
       "targetField": "name_et"
+    },
+    "name_en": {
+      "type": "text"
+    },
+    "name_ru": {
+      "type": "text"
     },
     "slug_en": {
       "type": "uid",
@@ -66,6 +66,32 @@
     "slug_ru": {
       "type": "uid",
       "targetField": "name_ru"
+    },
+    "description": {
+      "type": "component",
+      "repeatable": false,
+      "component": "translated.translated-long"
+    },
+    "award_date_and_location": {
+      "type": "text"
+    },
+    "award_fund": {
+      "type": "string"
+    },
+    "organized_by_organisations": {
+      "collection": "organisation"
+    },
+    "related_projects": {
+      "type": "component",
+      "repeatable": true,
+      "component": "competition.related-projects"
+    },
+    "roles_in_competitions": {
+      "via": "competition",
+      "collection": "roles-in-competition"
+    },
+    "organized_by_people": {
+      "collection": "person"
     }
   }
 }

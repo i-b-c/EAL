@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_person_date_detaileds",
+  "info": {
+    "name": "dateDetailed",
+    "icon": "chess-queen"
+  },
+  "options": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "visibility": {
+      "model": "access-level"
+    }
+  }
+}
